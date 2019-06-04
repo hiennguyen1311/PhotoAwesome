@@ -10,16 +10,16 @@
           "./src"
         ],
         "alias": {
-          //"@assets": "./src/asset",
-          //"@components": "./src/component",
+          "@assets": "./src/asset",
+          "@component": "./src/component",
           "@config": "./src/config",
-          //"@constant": "./src/constant",
-          //"@i18n": "./src/i18n",
-          //"@models": "./src/model",
-          //"@screens": "./src/screen",
-          //"@services": "./src/service",
-          //"@redux": "./src/redux",
-          //"@utils": "./src/util",
+          "@constant": "./src/constant",
+          "@i18n": "./src/i18n",
+          "@model": "./src/model",
+          "@screen": "./src/screen",
+          "@service": "./src/service",
+          "@redux": "./src/redux",
+          "@util": "./src/util",
         }
       }
     ]

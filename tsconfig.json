@@ -10,8 +10,8 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@assets/*": [
-        "src/assets/*"
+      "@asset/*": [
+        "src/asset/*"
       ],
       "@config/*": [
         "src/config/*"
@@ -19,33 +19,27 @@
       "@constant/*": [
         "src/constant/*"
       ],
-      "@containers/*": [
-        "src/containers/*"
+      "@model/*": [
+        "src/model/*",
       ],
-      "@models/*": [
-        "src/models/*",
-      ],
-      "@screens/*": [
-        "src/screens/*"
+      "@screen/*": [
+        "src/screen/*"
       ],
       "@i18n/*": [
         "src/i18n/*"
       ],
-      "@components/*": [
-        "src/components/*"
+      "@component/*": [
+        "src/component/*"
       ],
-      "@services/*": [
-        "src/services/*"
+      "@service/*": [
+        "src/service/*"
       ],
       "@redux/*": [
         "src/redux/*",
       ],
-      "@utils/*": [
-        "src/utils/*"
+      "@util/*": [
+        "src/util/*"
       ],
-      "@storyUtil": [
-        "storybook/stories/utils/*"
-      ]
     },
     "moduleResolution": "node",
     "noEmit": true,
