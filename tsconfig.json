@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": [
+      "es6"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@constant/*": [
+        "src/constant/*"
+      ],
+      "@containers/*": [
+        "src/containers/*"
+      ],
+      "@models/*": [
+        "src/models/*",
+      ],
+      "@screens/*": [
+        "src/screens/*"
+      ],
+      "@i18n/*": [
+        "src/i18n/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@services/*": [
+        "src/services/*"
+      ],
+      "@redux/*": [
+        "src/redux/*",
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@storyUtil": [
+        "storybook/stories/utils/*"
+      ]
+    },
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "import-name": false,
+    "object-shorthand-properties-first": false,
+    "align": [
+      true,
+      "parameters",
+      "statements",
+      "members",
+      "elements"
+    ],
+    "max-line-length": [
+      true,
+      200
+    ]
+  },
+  "extends": [
+    "tslint-config-airbnb"
+  ]
+}

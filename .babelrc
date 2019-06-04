@@ -1,27 +1,27 @@
 {
-    "presets": [
-      "module:metro-react-native-babel-preset"
-    ],
-    "plugins": [
-      [
-        "module-resolver",
-        {
-          "root": [
-            "./"
-          ],
-          "alias": {
-            //"@assets": "./src/asset",
-            //"@components": "./src/component",
-            "@config": "./src/config",
-            //"@constant": "./src/constant",
-            //"@i18n": "./src/i18n",
-            //"@models": "./src/model",
-            //"@screens": "./src/screen",
-            //"@services": "./src/service",
-            //"@redux": "./src/redux",
-            //"@utils": "./src/util",
-          }
+  "presets": [
+    "module:metro-react-native-babel-preset"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          //"@assets": "./src/asset",
+          //"@components": "./src/component",
+          "@config": "./src/config",
+          //"@constant": "./src/constant",
+          //"@i18n": "./src/i18n",
+          //"@models": "./src/model",
+          //"@screens": "./src/screen",
+          //"@services": "./src/service",
+          //"@redux": "./src/redux",
+          //"@utils": "./src/util",
         }
-      ]
+      }
     ]
-  }
+  ]
+}
