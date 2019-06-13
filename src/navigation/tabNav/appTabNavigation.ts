@@ -15,15 +15,15 @@ type TabBarIcon = {
 const initIcon = (color: any): TabBarIcon => {
   return {
     NewFeed: {
-      active: color.grayAthens,
-      inactive: color.greenRico,
-      isFont: false,
-      svgColorActive: color.white,
+      active: color.primary,
+      inactive: color.inactive,
+      isFont: true,
+      iconName: 'ios-home'
     },
     Setting: {
-      active: color.grayAthens,
-      inactive: color.secondary,
-      iconName: 'ios-menu',
+      active: color.primary,
+      inactive: color.inactive,
+      iconName: 'ios-settings',
       isFont: true,
     },
   };
@@ -47,7 +47,7 @@ export const appTabNavigator = createMaterialTopTabNavigator(
     tabBarOptions: {
       indicatorStyle: styles.indicatorStyle,
       pressOpacity: 0.6,
-      allowFontScaling: false,
+      allowFontScaling: true,
       showIcon: true,
       showLabel: false,
       tabStyle: styles.tabStyle,

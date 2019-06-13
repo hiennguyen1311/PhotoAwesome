@@ -7,6 +7,11 @@ export const stylesGlobal = StyleSheet.create({
   flex1: {
     flex: 1,
   },
+  button: {
+    backgroundColor: color.primary,
+    borderRadius: 4,
+    padding: 4,
+  }
 });
 
 export default stylesGlobal;

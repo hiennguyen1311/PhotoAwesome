@@ -1,5 +1,11 @@
 {
   "GLOBAL": {
     "MISSING_TRANSLATE": "Missing translate"
+  },
+  "NEW_FEED": {
+    "TITLE": "Your photos"
+  },
+  "SETTING": {
+    "TITLE": "Settings"
   }
 }

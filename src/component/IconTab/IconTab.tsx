@@ -11,10 +11,11 @@ export function getIconTab(
   if (iconInfo.isFont) {
     return <View
       style={[styles.iconActive, {
-        backgroundColor: focused ? iconInfo.inactive : iconInfo.active,
+        borderBottomColor: !focused ? iconInfo.inactive : iconInfo.active,
+        borderBottomWidth: focused ? 5 : 0
       },
       ]}>
-      <Icon type="ionicon" name={iconInfo.iconName || ''} size={25}
+      <Icon type="ionicon" name={iconInfo.iconName || ''} size={30}
         containerStyle={[styles.iconStyle, iconInfo.iconStyle || {}]}
         color={focused ? iconInfo.active : iconInfo.inactive}></Icon>
     </View>;
@@ -24,7 +25,7 @@ export function getIconTab(
       styles.iconActive,
       styles.svgContainer,
       {
-        backgroundColor: focused ? iconInfo.inactive : iconInfo.active,
+        backgroundColor: !focused ? iconInfo.inactive : iconInfo.active,
       },
     ]}>
     {iconInfo.svg ? iconInfo.svg(focused ? iconInfo.svgColorActive : iconInfo.inactive) : null}

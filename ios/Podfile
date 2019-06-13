@@ -1,0 +1,42 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'PhotoAwesome' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  #use_frameworks!
+
+  # Pods for PhotoAwesome
+  pod 'Firebase'
+  pod 'Firebase/Analytics'
+  pod 'React'
+  pod 'Firebase/Core', '~> 4.13.0', :modular_headers => true
+  #pod 'Firebase/Functions'
+  #pod 'Firebase/Auth', :modular_headers => true
+  pod 'Firebase/Database', :modular_headers => true
+  #pod 'Firebase/DynamicLinks'
+  #pod 'Firebase/Firestore'
+  #pod 'Firebase/Messaging'
+  #pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Storage', :modular_headers => true
+  #pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+  target 'PhotoAwesome-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+
+  end
+
+  target 'PhotoAwesomeTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'PhotoAwesome-tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for PhotoAwesome-tvOS
+    inherit! :search_paths
+
+end

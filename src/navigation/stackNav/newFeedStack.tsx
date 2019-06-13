@@ -7,14 +7,13 @@ import {
 import NewFeed from '@screen/NewFeed/NewFeed';
 import { color, font } from '@config/styleConfig';
 // import SearchIconHead from '@components/SearchIconHead/SearchIconHead';
-import i18n from '@i18n/i18n';
 import { moderateScale } from 'react-native-size-matters';
 import HeaderTitle from '@component/Header/HeaderTitle';
 
 function newFeedOpt() {
   return {
     headerStyle: {
-      backgroundColor: color.greenRico,
+      backgroundColor: color.primary,
       elevation: 0,
       borderBottomWidth: 0,
     },
@@ -42,7 +41,7 @@ const subMenu = createMaterialTopTabNavigator(
     tabBarOptions: {
       scrollEnabled: true,
       tabStyle: {
-        backgroundColor: color.greenKepler,
+        backgroundColor: color.blueMalibu,
         width: 130,
         height: moderateScale(47),
         alignItems: 'center',
@@ -58,7 +57,7 @@ const subMenu = createMaterialTopTabNavigator(
       },
       style: {
         width: undefined,
-        backgroundColor: '#1b554d',
+        backgroundColor: color.primary,
       },
       pressOpacity: 0.8,
       allowFontScaling: false,

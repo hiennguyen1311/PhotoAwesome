@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ViewStyle, ImageStyle } from 'react-native';
+import { widthWindow } from '@util/common';
+import appConfig from '@constant/common';
 
 export const styles = StyleSheet.create({
   iconActive: {
-    borderRadius: 50,
-    height: 44,
-    width: 44,
+    height: 50,
+    width: widthWindow / appConfig.subMenuPage,
   },
   iconStyle: {
     flex: 1,

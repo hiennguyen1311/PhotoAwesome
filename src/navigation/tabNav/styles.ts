@@ -1,16 +1,19 @@
 import { StyleSheet, Platform } from 'react-native';
 import { color } from '@config/styleConfig';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import { widthWindow } from '@util/common';
 
 export const styles = StyleSheet.create({
   careIconStyle: {
     marginTop: 4,
   },
   tabStyle: {
-    minHeight: 70,
+    minHeight: 50,
     backgroundColor: color.white,
     opacity: 1,
     marginBottom: Platform.OS === 'ios' && isIphoneX() ? 15 : 0,
+    flex: 1,
+    overflow: 'hidden',
   },
   tabContainer: {
     backgroundColor: color.white,
