@@ -4,7 +4,7 @@ const API_SECRET = 'XdRYnQZAjXd9UWZpvNmBjGxvN1E'
 const CLOUD_NAME = 'beyond-anttech';
 const folder = 'PhotoAwesome';
 
-export const cloudinary = RNCloudinary.init(API_KEY,API_SECRET, CLOUD_NAME);
+RNCloudinary.init(API_KEY,API_SECRET, CLOUD_NAME);
 
 export const uploadImage = (uri: string) => {
   RNCloudinary.UploadImage(uri).then((res: any) => {

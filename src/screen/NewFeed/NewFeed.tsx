@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { NavigationScreenProp, NavigationScreenOptions } from 'react-navigation';
+import { View, Image } from 'react-native';
+import { NavigationScreenProp, NavigationScreenOptions, ScrollView } from 'react-navigation';
 import { color } from '@config/styleConfig';
 import i18n from '@i18n/i18n';
 import { styles } from './styles';
@@ -8,11 +8,13 @@ import stylesGlobal from '@config/styleGlobal';
 import { ApplicationState } from '@model/appState';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import firebaseConfig from '@service/firebase';
 import getImage from '@service/newFeedApi';
 import { Button, Icon } from 'react-native-elements';
 import { options } from '@util/image';
 import ImagePicker from 'react-native-image-picker';
+import { convertObjectToArray } from '@util/common';
+import firebase from 'react-native-firebase';
+import ResponsiveImage from '@component/ResponsiveImage/ResponsiveImage';
 import { uploadImage } from '@service/cloudinary';
 
 type PropsNewFeed = {
@@ -20,10 +22,10 @@ type PropsNewFeed = {
 };
 type StateNewFeed = {
   imagSource: any;
+  data: any;
 };
 
 export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
-
   /**
    * Custom navigation.
    * @returns object NavigationScreenOptions.
@@ -41,7 +43,16 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
     super(props);
     this.state = {
       imagSource: '',
+      data: [],
     };
+  }
+
+  componentWillMount() {
+    firebase.database().ref('Images/').on('value', (snapshot) => {
+      this.setState({
+        data: snapshot.val()
+      });
+    });
   }
 
   image() {
@@ -51,7 +62,7 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
 
   onUpload = () => {
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
+      //console.log('Response = ', response);
     
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -61,15 +72,20 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
         console.log('User tapped custom button: ', response.customButton);
       } else {
         const source = { uri: response.uri };
-    
+        //uploadImage(response.uri);
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        //uploadImage(response.uri);
+        uploadImage(response.uri);
         this.setState({
           imagSource: source,
         });
       }
     })
+  }
+
+  renderList() {
+    const arr = convertObjectToArray(this.state.data);
+    return arr.map((item, index) => <ResponsiveImage key={index} source={{uri: item.url || item || ''}} />)
   }
 
   render() {
@@ -83,6 +99,13 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
             onPress={this.onUpload}
             buttonStyle={[stylesGlobal.button, { width: '50%', margin: 10 }]}
           />
+          <ScrollView style={{width: '100%'}}>
+            <View style={{width: '100%'}}>
+              {
+                this.renderList()
+              }
+            </View>
+          </ScrollView>
         </View>
       </View>
     );

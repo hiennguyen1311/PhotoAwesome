@@ -3,6 +3,8 @@ package com.photoawesome;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.agouin.cloudinary.RNCloudinaryPackage;
+import com.imagepicker.ImagePickerPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
@@ -31,6 +33,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNCloudinaryPackage(),
+            new ImagePickerPackage(),
             new RNFirebasePackage(),
             new RNGestureHandlerPackage(),
             new RNLanguagesPackage(),
