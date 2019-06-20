@@ -10,7 +10,7 @@ target 'PhotoAwesome' do
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
   pod 'Firebase'
   pod 'Firebase/Analytics'
-  pod 'Firebase/Core', '~> 4.13.0', :modular_headers => true
+  pod 'Firebase/Core', :modular_headers => true
   #pod 'Firebase/Functions'
   #pod 'Firebase/Auth', :modular_headers => true
   pod 'Firebase/Database', :modular_headers => true
@@ -21,7 +21,6 @@ target 'PhotoAwesome' do
   pod 'Firebase/Storage', :modular_headers => true
   #pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
   pod 'AFNetworking', '~> 3.0'
-  pod 'react-native-cloudinary', path: '../node-modules/react-native-cloudinary'
   target 'PhotoAwesome-tvOSTests' do
     inherit! :search_paths
     # Pods for testing

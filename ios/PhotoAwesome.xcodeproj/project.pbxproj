@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -13,12 +14,9 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* PhotoAwesomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PhotoAwesomeTests.m */; };
 		04121F3C22B1F4CD009B0F11 /* sw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04121F3B22B1F4CD009B0F11 /* sw.swift */; };
-		04121FD622B1F6F4009B0F11 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04121FD522B1F6F4009B0F11 /* FirebaseCore.framework */; };
-		0412208422B1F87E009B0F11 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0412208322B1F87E009B0F11 /* FirebaseStorage.framework */; };
 		0412221122B20946009B0F11 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */; };
 		04138B1722B0EE67005B2AB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04138B1622B0EE67005B2AB4 /* GoogleService-Info.plist */; };
 		0413DC0722B23B6200AE1988 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0413DBCE22B23B5500AE1988 /* libRCTCameraRoll.a */; };
-		0413DCAB22B2433C00AE1988 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0413DCAA22B2433C00AE1988 /* FirebaseDatabase.framework */; };
 		0413DCB622B2447400AE1988 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		04549C9922B2577C0044273B /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04549C9422B257690044273B /* libRNImagePicker.a */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -670,11 +668,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				04549C9922B2577C0044273B /* libRNImagePicker.a in Frameworks */,
-				0413DCAB22B2433C00AE1988 /* FirebaseDatabase.framework in Frameworks */,
 				0413DC0722B23B6200AE1988 /* libRCTCameraRoll.a in Frameworks */,
 				0412221122B20946009B0F11 /* libcxxreact.a in Frameworks */,
-				0412208422B1F87E009B0F11 /* FirebaseStorage.framework in Frameworks */,
-				04121FD622B1F6F4009B0F11 /* FirebaseCore.framework in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
