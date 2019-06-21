@@ -1,4 +1,10 @@
 rootProject.name = 'PhotoAwesome'
+include ':react-native-fetch-blob'
+project(':react-native-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fetch-blob/android')
+include ':react-native-image-to-base64'
+project(':react-native-image-to-base64').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-image-to-base64/android')
+include ':react-native-image-base64'
+project(':react-native-image-base64').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-image-base64/android')
 include ':react-native-cloudinary'
 project(':react-native-cloudinary').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-cloudinary/android')
 include ':react-native-image-picker'

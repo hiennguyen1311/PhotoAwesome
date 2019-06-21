@@ -11,6 +11,9 @@ export const stylesGlobal = StyleSheet.create({
     backgroundColor: color.primary,
     borderRadius: 4,
     padding: 4,
+  },
+  m10: {
+    margin: 10,
   }
 });
 

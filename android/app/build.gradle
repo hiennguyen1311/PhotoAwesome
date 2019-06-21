@@ -138,6 +138,9 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-fetch-blob')
+    implementation project(':react-native-image-to-base64')
+    implementation project(':react-native-image-base64')
     implementation project(':react-native-cloudinary')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-firebase')

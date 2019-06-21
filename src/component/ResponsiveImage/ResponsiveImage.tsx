@@ -2,7 +2,8 @@ import React from 'react';
 import { View, ImageURISource, Image, ImageStyle } from 'react-native';
 import { styles } from './styles';
 import { widthWindow } from '@util/common';
-const defaultDimension = widthWindow / 2;
+const margin = 7.5;
+const defaultDimension = (widthWindow / 2) - margin;
 
 interface ImageProps {
   source: ImageURISource;
@@ -15,16 +16,31 @@ interface ImageState {
   ratio: number;
 }
 
-export default class ResponsiveImage extends React.PureComponent<ImageProps> {
-
+export default class ResponsiveImage extends React.PureComponent<ImageProps, ImageState> {
+  state = {
+    ratio: 1
+  }
+  getRatio() {
+    const { source } = this.props;
+    let ratio = 0;
+    Image.getSize(source.uri, (width: number, height: number) => {
+      this.setState({
+        ratio: width / height
+      })
+    }, () => {} )
+    return ratio;
+  }
   render() {
-    let { source, width = defaultDimension, height, imageStyle} = this.props
-    //this.getAspectRatio(source.uri)
-    //const { ratio } = this.state;
-    height = height ? height : width / 0.5;
+    let { source, width = defaultDimension, height = defaultDimension, imageStyle} = this.props;
+    const { ratio } = this.state;
+    this.getRatio();
+
+    if(height && width) {
+      height = (height  * defaultDimension) / width;
+    }
     
     return <View>
-      <Image source={source} style={[styles.image(width, height), imageStyle]} />
+      <Image source={source} style={[styles.image(defaultDimension, height), imageStyle]} />
     </View>;
   }
 }

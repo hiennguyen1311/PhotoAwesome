@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import { NavigationScreenProp, NavigationScreenOptions, ScrollView } from 'react-navigation';
 import { color } from '@config/styleConfig';
 import i18n from '@i18n/i18n';
@@ -15,7 +15,8 @@ import ImagePicker from 'react-native-image-picker';
 import { convertObjectToArray } from '@util/common';
 import firebase from 'react-native-firebase';
 import ResponsiveImage from '@component/ResponsiveImage/ResponsiveImage';
-import { uploadImage } from '@service/cloudinary';
+import { uploadImage } from '@service/cloudinaryApi';
+import MasonryList from "react-native-masonry-list";
 
 type PropsNewFeed = {
   navigation: NavigationScreenProp<any>,
@@ -48,7 +49,7 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
   }
 
   componentWillMount() {
-    firebase.database().ref('Images/').on('value', (snapshot) => {
+    firebase.database().ref('images/').on('value', (snapshot) => {
       this.setState({
         data: snapshot.val()
       });
@@ -62,20 +63,13 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
 
   onUpload = () => {
     ImagePicker.showImagePicker(options, (response) => {
-      //console.log('Response = ', response);
-    
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
       } else {
         const source = { uri: response.uri };
-        //uploadImage(response.uri);
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        uploadImage(response.uri);
+        uploadImage({ uri: 'data:image/jpeg;base64,' + response.data });
         this.setState({
           imagSource: source,
         });
@@ -85,7 +79,20 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
 
   renderList() {
     const arr = convertObjectToArray(this.state.data);
-    return arr.map((item, index) => <ResponsiveImage key={index} source={{uri: item.url || item || ''}} />)
+    return <MasonryList
+      columns={2}
+      images={arr.map(item => {
+        return {
+          ...item,
+          dimensions: { width: item.width, height: item.height },
+          uri: item.uri
+        }
+      })}
+      initialColToRender={2} // columns render first
+      initialNumInColsToRender={5}
+      //completeCustomComponent={ResponsiveImage}
+      imageContainerStyle={{borderRadius: 2}}
+    />
   }
 
   render() {
@@ -95,12 +102,12 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
           <Button
             title=""
             iconRight
-            icon={<Icon type="ionicon" name='md-camera' color={color.white}/>}
+            icon={<Icon type="ionicon" name='md-cloud-upload' color={color.white} />}
             onPress={this.onUpload}
             buttonStyle={[stylesGlobal.button, { width: '50%', margin: 10 }]}
           />
-          <ScrollView style={{width: '100%'}}>
-            <View style={{width: '100%'}}>
+          <ScrollView style={{ width: '100%' }}>
+            <View style={{ width: '100%', height: '100%', marginBottom: 100 }}>
               {
                 this.renderList()
               }
