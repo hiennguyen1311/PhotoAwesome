@@ -23,6 +23,8 @@ export const fontSize = {
   small: 8,
   medium: 12,
   large: 16,
+  normal: 20,
+  extraLarge: 24,
 }
 
 export default {

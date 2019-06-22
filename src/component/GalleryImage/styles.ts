@@ -10,6 +10,6 @@ export const styles: Styles  = {
   image: (width: number, height: number) => ({
     width,
     height,
-    borderRadius: 4
+    maxHeight: '90%'
   }),
 };

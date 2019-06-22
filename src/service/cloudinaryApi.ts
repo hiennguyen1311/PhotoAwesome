@@ -2,14 +2,14 @@ import Api from "./api";
 
 export const uploadImage = async({uri}: {uri: string}) => {
   try {
-    const data = await Api.post('api/v1/uploadImage',  { file: uri } );
-    if(data.error) {
+    const res = await Api.post('api/v1/uploadImage',  { file: uri } );
+    if(res.error) {
       return {
-        error: data.error
+        error: res.error
       }
     }
     return {
-      data
+      data: res.data,
     }
   } catch (error) {
     console.log(error)

@@ -1,5 +1,6 @@
 import { ViewStyle, TextStyle } from 'react-native';
 import { variables, fontFamily } from '@config/styleConfig';
+import { IColor } from '@model/interface';
 
 type Styles = {
   separate: (color: IColor) => ViewStyle,

@@ -1,6 +1,4 @@
-import { TextStyle, ViewStyle } from 'react-native';
-import { variables } from '@config/styleConfig';
-import { font } from '@config/styleConfig';
+import { ViewStyle } from 'react-native';
 
 type Styles = {
   row: ViewStyle;

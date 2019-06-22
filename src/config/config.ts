@@ -6,4 +6,9 @@ const config = {
   }
 }
 
+export const appConfig = {
+  imageColumn: 2,
+  maxImageCount: 3,
+}
+
 export default config['TEST'];

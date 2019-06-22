@@ -7,6 +7,7 @@ import sagaMiddleware from '@redux/sagaMiddleware';
 import rootSaga from '@redux/rootSaga';
 import configureStore from '@redux/configureStore';
 import { Provider } from 'react-redux';
+import CustomStatusBar from '@component/CustomStatusBar/CustomStatusBar';
 
 type Props = {};
 export const store = configureStore();
@@ -18,8 +19,9 @@ export default class App extends Component<Props> {
       <Provider store={store}>
         <ThemeProvider>
           <View style={stylesGlobal.flex1}>
+            <CustomStatusBar isLight />
             {/* {statusBar}
-          <OfflineBar /> */}
+            <OfflineBar /> */}
             <AppContainer></AppContainer>
           </View>
         </ThemeProvider>

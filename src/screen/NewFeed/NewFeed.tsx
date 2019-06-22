@@ -12,14 +12,18 @@ import getImage from '@service/newFeedApi';
 import { Button, Icon } from 'react-native-elements';
 import { options } from '@util/image';
 import ImagePicker from 'react-native-image-picker';
-import { convertObjectToArray } from '@util/common';
+import { convertObjectToArray, widthWindow } from '@util/common';
 import firebase from 'react-native-firebase';
-import ResponsiveImage from '@component/ResponsiveImage/ResponsiveImage';
-import { uploadImage } from '@service/cloudinaryApi';
 import MasonryList from "react-native-masonry-list";
+import { uploadImage } from '@redux/NewFeed/action';
+import { UploadImageAction } from '@model/newFeed';
+import CustomSpinner from '@component/CustomSpinner/CustomSpinner';
 
 type PropsNewFeed = {
-  navigation: NavigationScreenProp<any>,
+  navigation: NavigationScreenProp<any>;
+  imageColumn: number;
+  uploadImage: (payload: any) => UploadImageAction;
+  isLoading: boolean;
 };
 type StateNewFeed = {
   imagSource: any;
@@ -62,11 +66,13 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
   }
 
   onUpload = () => {
+    const { uploadImage } = this.props;
+  
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
+        console.warn('User cancelled image picker');
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+        console.warn('ImagePicker Error: ', response.error);
       } else {
         const source = { uri: response.uri };
         uploadImage({ uri: 'data:image/jpeg;base64,' + response.data });
@@ -77,10 +83,17 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
     })
   }
 
+  handleOnPressImage = (data: any, index: number) => {
+    this.props.navigation.navigate('ImageSlider', { data, index})
+  }
+
   renderList() {
     const arr = convertObjectToArray(this.state.data);
+    const { imageColumn } = this.props;
+    const onPressImage = (item: any, index: number) => this.handleOnPressImage(arr, index);
+    
     return <MasonryList
-      columns={2}
+      columns={imageColumn}
       images={arr.map(item => {
         return {
           ...item,
@@ -92,10 +105,13 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
       initialNumInColsToRender={5}
       //completeCustomComponent={ResponsiveImage}
       imageContainerStyle={{borderRadius: 2}}
+      onPressImage={onPressImage}
     />
   }
 
   render() {
+    const { isLoading } = this.props;
+
     return (
       <View style={stylesGlobal.flex1}>
         <View>
@@ -104,7 +120,7 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
             iconRight
             icon={<Icon type="ionicon" name='md-cloud-upload' color={color.white} />}
             onPress={this.onUpload}
-            buttonStyle={[stylesGlobal.button, { width: '50%', margin: 10 }]}
+            buttonStyle={[stylesGlobal.button, { width: (widthWindow / 2) - 10, margin: 5 }]}
           />
           <ScrollView style={{ width: '100%' }}>
             <View style={{ width: '100%', height: '100%', marginBottom: 100 }}>
@@ -114,6 +130,7 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
             </View>
           </ScrollView>
         </View>
+        <CustomSpinner isVisible={isLoading} />
       </View>
     );
   }
@@ -122,6 +139,7 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return ({
     dispatch,
+    uploadImage: (payload: any) => dispatch(uploadImage(payload))
   });
 };
 
@@ -133,6 +151,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 const mapStateToProps = (state: ApplicationState) => {
   return ({
     isLoading: state.newFeed.isLoading,
+    imageColumn: state.app.setting.imageColumn,
+    imageUploaded: state.newFeed.imageUploaded,
+    error: state.newFeed.error,
   });
 };
 

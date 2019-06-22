@@ -2,6 +2,7 @@ import { StyleSheet, Platform } from 'react-native';
 import { color } from '@config/styleConfig';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { moderateScale } from 'react-native-size-matters';
+import font from './font';
 
 export const stylesGlobal = StyleSheet.create({
   flex1: {
@@ -14,6 +15,25 @@ export const stylesGlobal = StyleSheet.create({
   },
   m10: {
     margin: 10,
+  },
+  flexCenterAll: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  transparent: {
+    backgroundColor: color.transparent,
+  },
+  customTransparent: {
+    backgroundColor: 'rgba(0,0,0,0.7)',
+  },
+  textLoading: {
+    color: color.white,
+    fontFamily: font.fontFamily.fontRegular,
+    fontSize: font.fontSize.large,
+  },
+  flexRow: {
+    flexDirection: 'row',
   }
 });
 

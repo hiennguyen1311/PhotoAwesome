@@ -1,36 +1,30 @@
 import React, { Component } from 'react';
-import { View, FlatList, TouchableOpacity, Linking } from 'react-native';
+import { connect } from 'react-redux';
+import { View } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
-import { ListItem, Icon, ListItemProps, Text } from 'react-native-elements';
+import { Text } from 'react-native-elements';
 import i18n from '@i18n/i18n';
 import { color } from '@config/styleConfig';
 import { styles } from './styles';
-
 import HeaderTitle from '@component/Header/HeaderTitle';
 import stylesGlobal from '@config/styleGlobal';
+import { ApplicationState } from '@model/appState';
+import { Dispatch } from 'redux';
+import { changeSetting } from '@redux/App/action';
+import { InputPicker } from '@component/InputPicker/InputPicker';
+import { appConfig } from '@config/config';
+import { ISetting } from '@model/interface';
 const i18Key = 'SETTING';
+const maxImageCount = appConfig.maxImageCount;
 
-interface SettingParams {
-}
 type PropsSetting = {
-  navigation: NavigationScreenProp<SettingParams>,
-  logoutUser: () => void,
-  changeLanguage: (lang: enumLanguage) => void,
-  changeTheme: (theme: string) => ThemeAction
-  language: string | undefined,
-  theme: string,
+  navigation: NavigationScreenProp<any>;
+  imageColumn: number;
+  changeSetting: (payload: ISetting) => any
 };
-interface ItemSetting extends ListItemProps {
-  id: string;
-  text: string;
-}
 
-interface ItemSection {
-  title?: string;
-  item: ItemSetting[];
-}
 
-export default class SettingScreen extends Component<PropsSetting>{
+class SettingScreen extends Component<PropsSetting>{
   static navigationOptions = () => {
     return {
       headerTitle: <HeaderTitle text={i18n.translate('SETTING.TITLE')} />,
@@ -40,8 +34,51 @@ export default class SettingScreen extends Component<PropsSetting>{
     };
   }
 
+  dataPicker() {
+    let dataArr = []
+    for(let i = 1; i <= maxImageCount; i++) {
+      dataArr.push({label: i.toString(), value: i.toString(),  id: i.toString})
+    }
+    return dataArr;
+  }
+
+  onChangeValuePicker = (item: any, index: number) => {
+    const { changeSetting } = this.props;
+    changeSetting({ imageColumn: parseInt(item) || appConfig.imageColumn })
+  }
+
   render() {
+    const { imageColumn } = this.props;
+
     return <View style={stylesGlobal.flex1}>
+      <View>
+        <Text>{}</Text>
+        <InputPicker
+          value={imageColumn.toString()}
+          items={this.dataPicker()}
+          onChangeValuePicker={this.onChangeValuePicker}
+        />
+      </View>
     </View>;
   }
 }
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return ({
+    dispatch,
+    changeSetting: (payload: any) => dispatch(changeSetting(payload))
+  });
+};
+
+/**
+ * map state to props
+ * @param state object to ApplicationState
+ * @return objects
+ */
+const mapStateToProps = (state: ApplicationState) => {
+  return ({
+    imageColumn: state.app.setting.imageColumn,
+  });
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingScreen);
