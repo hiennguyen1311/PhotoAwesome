@@ -3,7 +3,7 @@ import { isIOS } from '@util/common';
 import { color } from '@config/styleConfig';
 
 type Styles = {
-  iconStyle: ViewStyle,
+  iconStyle: ViewStyle;
 };
 
 type Picker = {

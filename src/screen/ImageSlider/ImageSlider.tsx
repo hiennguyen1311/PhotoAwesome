@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavigationScreenProp, ScrollView } from 'react-navigation';
+import { NavigationScreenProp, ScrollView, FlatList } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
 import { View, TouchableOpacity, Modal } from 'react-native';
 import { widthWindow } from '@util/common';
@@ -9,9 +9,9 @@ import i18n from '@i18n/i18n';
 import stylesGlobal from '@config/styleGlobal';
 import { styles } from './styles';
 import color from '@config/color';
-import { Text, Icon } from 'react-native-elements';
-import { SwipeableModal } from 'react-native-swipeable-modal';
-import SlidingUpPanel from 'rn-sliding-up-panel';
+import { Text, Icon, Button } from 'react-native-elements';
+import Swiper from 'react-native-swiper';
+import Hyperlink from 'react-native-hyperlink'
 
 const margin = 0;
 const itemWidth = widthWindow - margin;
@@ -33,20 +33,21 @@ export default class ImageSlider extends Component<Props, State>{
   carousel: any;
   static navigationOptions = () => {
     return {
-      headerTitle: <HeaderTitle text={i18n.translate(`${i18Key}.TITLE`)} />,
       headerStyle: {
         backgroundColor: color.black,
-        shadowColor: color.white,
-        elevation: 0,
         borderBottomWidth: 0,
       },
+      headerRight: <View style={styles.buttonContainer}>
+        <Button type='clear' icon={<Icon name="ios-trash" type="ionicon" color={color.white}/>}/>
+        <Button type='clear' icon={<Icon name="md-share" type="ionicon" color={color.white}/>}/>
+      </View>
     };
   }
 
   constructor(props: Props) {
     super(props);
-    const data =  props.navigation.getParam('data', []);
-    const index =  props.navigation.getParam('index', 0);
+    const data = props.navigation.getParam('data', []);
+    const index = props.navigation.getParam('index', 0);
     this.state = {
       data,
       index,
@@ -61,7 +62,13 @@ export default class ImageSlider extends Component<Props, State>{
     });
   }
 
-  renderItem = ({ item, index }: { item: any, index: number }) => {
+  onIndexChanged = (index: number) => {
+    this.setState({
+      index,
+    });
+  }
+
+  renderItem = (item: any, index: number) => {
     const width = widthWindow;
     const imageHeight = item.height || widthWindow;
     const imageWidth = item.width || widthWindow;
@@ -74,11 +81,11 @@ export default class ImageSlider extends Component<Props, State>{
         source={{ uri: item.url }}
         height={height}
       />
-      {this.renderDetail(item)}
     </View>
   }
 
   renderDetail(item: any) {
+    if(!item.url) return
     return <TouchableOpacity onPress={this.onToggleModal} style={styles.detailContainer(color)}>
       <Text style={styles.detailText(color)}>
         {item.url}
@@ -86,26 +93,34 @@ export default class ImageSlider extends Component<Props, State>{
     </TouchableOpacity>
   }
 
+  renderTextDetail({title, key}: {title: string, key: string}) {
+    return <Hyperlink key={key} linkDefault={true} linkStyle={styles.hyperlink(color)}>
+      <Text style={styles.imageDetailText}>{title}</Text>
+    </Hyperlink>
+  }
+
   renderModal() {
     const { visibleModal, selectedImage } = this.state;
     const { url = '' } = selectedImage;
     let dataText = [];
     let title = '';
-    for(let key in selectedImage) {
+    for (let key in selectedImage) {
       title = `${key}: ${selectedImage[key]}`
-      dataText.push(<View key={key}><Text style={styles.imageDetailText}>{title}</Text></View>)
+      dataText.push(this.renderTextDetail({title, key: title}))
     }
 
     return <Modal animationType={'slide'} visible={visibleModal} transparent>
       <View style={styles.modalContainer(color)}>
         <View style={styles.modalHeader}>
           <TouchableOpacity onPress={this.onToggleModal}>
-            <Icon type="ionicon" name="md-close" size={40} color={color.white}/>
+            <Icon type="ionicon" name="md-close" size={40} color={color.white} />
           </TouchableOpacity>
         </View>
-        <ScrollView style={styles.modal(color)}>
-          {dataText}
-        </ScrollView>
+        <FlatList
+          data={dataText}
+          style={styles.modal(color)}
+          renderItem={({item}) => item as any}
+        />
       </View>
     </Modal>
   }
@@ -114,14 +129,24 @@ export default class ImageSlider extends Component<Props, State>{
     const { data, index } = this.state;
 
     return <View style={[stylesGlobal.flex1, styles.container(color)]}>
-      <Carousel
+      <Swiper
+        index={index} showsPagination={false}
+        onIndexChanged={this.onIndexChanged}
+        loop={false}
+        loadMinimal={true}
+        loadMinimalSize={1}
+      >
+        {data.map(this.renderItem)}
+      </Swiper>
+      {this.renderDetail(data[index])}
+      {/* <Carousel
         firstItem={index}
         ref={(c: any) => { this.carousel = c; }}
         data={data}
         renderItem={this.renderItem.bind(this)}
         sliderWidth={sliderWidth}
         itemWidth={itemWidth}
-      />
+      /> */}
       {this.renderModal()}
     </View>
   }

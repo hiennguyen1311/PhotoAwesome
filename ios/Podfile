@@ -2,23 +2,15 @@
 platform :ios, '9.0'
 
 target 'PhotoAwesome' do
+  pod 'AppCenter/Crashes', '~> 2.1.0'
+  pod 'AppCenter/Analytics', '~> 2.1.0'
+  pod 'AppCenterReactNativeShared', '~> 2.1.0'
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
 
   # Pods for PhotoAwesome
   #pod 'React', :path => '../node_modules/react-native'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
-  pod 'Firebase', :modular_headers => true
-  pod 'Firebase/Analytics', :modular_headers => true
-  pod 'Firebase/Core', '~> 5.20.1',:modular_headers => true
-  #pod 'Firebase/Functions'
-  #pod 'Firebase/Auth', :modular_headers => true
-  pod 'Firebase/Database', :modular_headers => true
-  #pod 'Firebase/DynamicLinks'
-  #pod 'Firebase/Firestore'
-  #pod 'Firebase/Messaging'
-  #pod 'Firebase/RemoteConfig'
-  pod 'Firebase/Storage', :modular_headers => true
   #pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
   #pod 'react-native-fetch-blob',
   # :path => '../node_modules/react-native-fetch-blob'

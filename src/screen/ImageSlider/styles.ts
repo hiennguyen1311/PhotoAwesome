@@ -11,6 +11,8 @@ type Styles = {
   modalContainer: (color: IColor) => ViewStyle;
   modalHeader: ViewStyle;
   imageDetailText: TextStyle;
+  buttonContainer: ViewStyle;
+  hyperlink: (color: IColor) => TextStyle;
 };
 
 export const styles: Styles = {
@@ -52,4 +54,11 @@ export const styles: Styles = {
     fontFamily: fontFamily.fontMedium,
     margin: 10,
   },
+  buttonContainer:{ 
+    flexDirection: 'row',
+    marginRight: 10,
+  },
+  hyperlink: color => ({
+    color: color.primary,
+  }),
 };

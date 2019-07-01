@@ -36,8 +36,8 @@ class SettingScreen extends Component<PropsSetting>{
 
   dataPicker() {
     let dataArr = []
-    for(let i = 1; i <= maxImageCount; i++) {
-      dataArr.push({label: i.toString(), value: i.toString(),  id: i.toString})
+    for (let i = 1; i <= maxImageCount; i++) {
+      dataArr.push({ label: i.toString(), value: i.toString(), id: i.toString })
     }
     return dataArr;
   }
@@ -49,16 +49,15 @@ class SettingScreen extends Component<PropsSetting>{
 
   render() {
     const { imageColumn } = this.props;
+    const columnNumber = i18n.t(`${i18Key}.IMAGE_COLUMNS`);
 
     return <View style={stylesGlobal.flex1}>
-      <View>
-        <Text>{}</Text>
-        <InputPicker
-          value={imageColumn.toString()}
-          items={this.dataPicker()}
-          onChangeValuePicker={this.onChangeValuePicker}
-        />
-      </View>
+      <InputPicker
+        label={columnNumber}
+        value={imageColumn.toString()}
+        items={this.dataPicker()}
+        onChangeValuePicker={this.onChangeValuePicker}
+      />
     </View>;
   }
 }

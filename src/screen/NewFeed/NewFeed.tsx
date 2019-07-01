@@ -13,7 +13,6 @@ import { Button, Icon } from 'react-native-elements';
 import { options } from '@util/image';
 import ImagePicker from 'react-native-image-picker';
 import { convertObjectToArray, widthWindow } from '@util/common';
-import firebase from 'react-native-firebase';
 import MasonryList from "react-native-masonry-list";
 import { uploadImage } from '@redux/NewFeed/action';
 import { UploadImageAction } from '@model/newFeed';
@@ -53,11 +52,11 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
   }
 
   componentWillMount() {
-    firebase.database().ref('images/').on('value', (snapshot) => {
-      this.setState({
-        data: snapshot.val()
-      });
-    });
+    // firebase.database().ref('images/').on('value', (snapshot) => {
+    //   this.setState({
+    //     data: snapshot.val()
+    //   });
+    // });
   }
 
   image() {
@@ -67,7 +66,7 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
 
   onUpload = () => {
     const { uploadImage } = this.props;
-  
+
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
         console.warn('User cancelled image picker');
@@ -84,14 +83,14 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
   }
 
   handleOnPressImage = (data: any, index: number) => {
-    this.props.navigation.navigate('ImageSlider', { data, index})
+    this.props.navigation.navigate('ImageSlider', { data, index })
   }
 
   renderList() {
     const arr = convertObjectToArray(this.state.data);
     const { imageColumn } = this.props;
     const onPressImage = (item: any, index: number) => this.handleOnPressImage(arr, index);
-    
+
     return <MasonryList
       columns={imageColumn}
       images={arr.map(item => {
@@ -104,7 +103,7 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
       initialColToRender={2} // columns render first
       initialNumInColsToRender={5}
       //completeCustomComponent={ResponsiveImage}
-      imageContainerStyle={{borderRadius: 2}}
+      imageContainerStyle={{ borderRadius: 2 }}
       onPressImage={onPressImage}
     />
   }
@@ -122,13 +121,11 @@ export class NewFeedScreen extends Component<PropsNewFeed, StateNewFeed>{
             onPress={this.onUpload}
             buttonStyle={[stylesGlobal.button, { width: (widthWindow / 2) - 10, margin: 5 }]}
           />
-          <ScrollView style={{ width: '100%' }}>
-            <View style={{ width: '100%', height: '100%', marginBottom: 100 }}>
-              {
-                this.renderList()
-              }
+          <View style={{ width: '100%', height: '100%', paddingBottom: 100 }}>
+            {
+              this.renderList()
+            }
             </View>
-          </ScrollView>
         </View>
         <CustomSpinner isVisible={isLoading} />
       </View>

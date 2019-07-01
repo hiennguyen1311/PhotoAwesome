@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "89639630752",
+    "firebase_url": "https://photoawesome-3b08c.firebaseio.com",
+    "project_id": "photoawesome-3b08c",
+    "storage_bucket": "photoawesome-3b08c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89639630752:android:c2ff2e94053ef52a",
+        "android_client_info": {
+          "package_name": "com.photoawesome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89639630752-gtmo3e02v3009a887umcv2ap5hb2e09c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photoawesome",
+            "certificate_hash": "f3246d574c3f025d629a9c4427ecc1070ace933a"
+          }
+        },
+        {
+          "client_id": "89639630752-ehe95be2ssghs3f1v9e4aadn5a06paai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWA5PHfrNG5M6FhGl7nUaff0RNICut3Ag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89639630752-ehe95be2ssghs3f1v9e4aadn5a06paai.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "89639630752-7v9krg0cqjaduna89d0lc15ceruqfb1r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.PhotoAwesome"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

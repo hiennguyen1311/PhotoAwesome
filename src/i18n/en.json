@@ -6,7 +6,8 @@
     "TITLE": "Your photos"
   },
   "SETTING": {
-    "TITLE": "Settings"
+    "TITLE": "Settings",
+    "IMAGE_COLUMNS": "Image columns"
   },
   "IMAGE_SLIDER": {
     "TITLE": "Images"

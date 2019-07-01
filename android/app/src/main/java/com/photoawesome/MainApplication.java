@@ -3,12 +3,11 @@ package com.photoawesome;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
+import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
+import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.github.xfumihiro.react_native_image_to_base64.ImageToBase64Package;
-import fr.snapp.imagebase64.RNImgToBase64Package;
-import com.agouin.cloudinary.RNCloudinaryPackage;
 import com.imagepicker.ImagePickerPackage;
-import io.invertase.firebase.RNFirebasePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
@@ -36,12 +35,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
+            new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
+            new AppCenterReactNativePackage(MainApplication.this),
             new RNFetchBlobPackage(),
-            new ImageToBase64Package(),
-            new RNImgToBase64Package(),
-            new RNCloudinaryPackage(),
             new ImagePickerPackage(),
-            new RNFirebasePackage(),
             new RNGestureHandlerPackage(),
             new RNLanguagesPackage(),
             new RNI18nPackage(),
@@ -58,16 +56,6 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
-  }
-
-  @Override
-    protected ReactActivityDelegate createReactActivityDelegate() {
-    return new ReactActivityDelegate(this, getMainComponentName()) {
-       @Override
-       protected ReactRootView createRootView() {
-         return new RNGestureHandlerEnabledRootView(MainActivity.this);
-       }
-   };
   }
 
   @Override

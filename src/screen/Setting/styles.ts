@@ -8,6 +8,7 @@ type Styles = {
   grayText: (color: IColor) => TextStyle,
   titleContainer: (color: IColor) => ViewStyle,
   title: (color: IColor) => TextStyle,
+  row: ViewStyle;
 };
 
 export const styles: Styles = {
@@ -34,5 +35,8 @@ export const styles: Styles = {
     color: color.white,
     fontSize: variables.fontSizeNormal + 2,
     fontFamily: fontFamily.fontMedium
-  })
+  }),
+  row: {
+    flexDirection: 'row',
+  },
 };
